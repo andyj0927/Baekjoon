@@ -8,8 +8,7 @@ typedef pair<int, int> pii;
 typedef pair<ll, ll> pll;  
 const ll MAXN = 1e6+5;
 int n;
-int a[MAXN];
-map<int,int> before;
+int a[MAXN], before[MAXN];
 int main(){
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
