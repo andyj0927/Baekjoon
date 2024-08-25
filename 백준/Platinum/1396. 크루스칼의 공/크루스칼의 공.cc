@@ -90,8 +90,8 @@ int main(){
     }
   }
   idx--;
-  for(int i=n+1;i<=idx;i++){
-    if(i==find(i)){
+  for(int i=1;i<=idx;i++){
+    if(par[i]<0){
       p[i][0] = i;
       depth[i] = 0;
       ll kk = dfs(i,-1);
@@ -108,7 +108,7 @@ int main(){
     int x,y;
     cin >> x >> y;
     int ca = lca(x,y);
-    if(find(x)!=find(y)) cout << -1 << endl;
+    if(ca==-1) cout << -1 << endl;
     else cout << big[ca] << " " << child[ca] << endl;
   }
 }
