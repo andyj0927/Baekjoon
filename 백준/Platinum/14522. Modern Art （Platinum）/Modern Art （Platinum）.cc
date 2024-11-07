@@ -10,10 +10,7 @@ const ll MAXN = 4e6;
 const ll INF = 1e10;
 ll n;
 ll board[1001][1001],pre[1002][1002];
-ll idx[1000001][4]; 
-ll cal(int i1,int i2, int j1,int j2){
-  return pre[i2][j2]-pre[i1-1][j2]-pre[i2][j1-1]+pre[i1-1][j1-1];
-}
+int idx[1000001][4]; 
 int main(){
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
@@ -30,8 +27,8 @@ int main(){
     idx[i][3] = -1;
   }
   int count = 0;
-  for(ll i=1;i<=n;i++){
-    for(ll j=1;j<=n;j++){
+  for(int i=1;i<=n;i++){
+    for(int j=1;j<=n;j++){
       if(board[i][j]){
         int cur = board[i][j];
         if(idx[cur][0]==-1){
@@ -65,12 +62,15 @@ int main(){
     else cout << n*n-1 << endl;
     return 0;
   }
-  set <int> s;
-  for(int i=1;i<=n*n;i++) s.insert(i);
+  vector <int> check(n*n+1,1);
+  int ans = n*n;
   for(int i=1;i<=n;i++){
     for(int j=1;j<=n;j++){
-      if(pre[i][j]!=board[i][j]) s.erase(board[i][j]);
+      if(pre[i][j]!=board[i][j] && check[board[i][j]]){
+        ans--;
+        check[board[i][j]] = 0;
+      }
     }
   }
-  cout << s.size();
+  cout << ans;
 }  
